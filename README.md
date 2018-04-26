@@ -16,6 +16,16 @@ Add the package by using the following command:
 
 ### Using it in your code
 
+First, obtain a `KeystoreReader` instance from a `Keystore` object, a `string` containing the JSON content or a file name:
+
+    var reader = KeystoreReader.FromFile("/path/to/keystore");
+
+Then, use the `TryDecrypt` function to decrypt the keystore file:
+
+    reader.TryDecrypt("ASDF12345", out var privateKey);
+
+The function returns `false` if the passphase provided is incorrect, or throws an exception if the cipher or kdf is not supported (yet).
+
 ## Limitations
 
 Currently the functionality of the library is quite limited with the following known limitations:
